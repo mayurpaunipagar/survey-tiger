@@ -7,31 +7,37 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import CreateSurvey from './components/create-survey';
 
 function App() {
     return (
-        <div className="App" >
-            <Router>
-                <div>
-                    <Switch>
-                        <Route path="/create">I am inside Create Survey</Route>
-                        <Route path="/take">I am inside Take Survey</Route>
-                        <Route path="/">
-                            <header className="App-header" >
-                                <img src={logo}
-                                    className="App-logo"
-                                    alt="logo" />
+        <Router>
+            <div className="App" >
+                <header className="App-header" >
+                    <img src={logo}
+                        className="App-logo"
+                        alt="logo" />
 
-                                <Button className="main-btn" > Create Survey </Button>
-                                <Button className="main-btn" > Take Survey </Button>
-                            </header>
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
+                </header>
 
 
-        </div>
+
+                <Switch>
+                    <Route path="/create"><CreateSurvey /></Route>
+                    <Route path="/take">Take Survey</Route>
+                    <Route path="/">
+
+                        <Link to="/create"><Button className="main-btn" > Create Survey </Button></Link>
+                        <Link to="/take"><Button className="main-btn" > Take Survey </Button></Link>
+
+                    </Route>
+                </Switch>
+
+
+
+
+            </div>
+        </Router>
     );
 }
 
