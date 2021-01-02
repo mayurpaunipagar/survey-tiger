@@ -29,3 +29,8 @@
     padding: 10px;
     font-size: larger;
 }
+.question-container{
+    margin: auto;
+    width: 400px;
+    padding: 10px;
+}

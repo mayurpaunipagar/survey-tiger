@@ -7,7 +7,7 @@ function CreateSurvey() {
     const [dropdowntext, setdropdowntext] = useState("Select Question Type");
     const toggle = () => setDropdownOpen(prevState => !prevState);
     return (
-        <>
+        <div>
             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                 <DropdownToggle caret>
                     {dropdowntext}
@@ -20,7 +20,7 @@ function CreateSurvey() {
             </Dropdown>
             {(dropdowntext === "Multi-Select") ? <MultiSelect /> : null}
             {(dropdowntext === "Single-Select") ? <SingleSelect /> : null}
-        </>
+        </div>
     );
 }
 
