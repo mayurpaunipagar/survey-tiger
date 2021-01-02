@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 #mayur did this
-.eslintcache
 .gitignore
+.eslintcache

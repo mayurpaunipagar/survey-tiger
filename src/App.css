@@ -34,3 +34,17 @@
     width: 400px;
     padding: 10px;
 }
+.App .question-container .input-grp{
+    margin-bottom: 10px;
+}
+.App .question-container .options-text{
+    font-size:12px;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.App .question-container .question-buttons{
+    display:flex;
+    flex-direction: row;
+    font-size: 12px;
+}
