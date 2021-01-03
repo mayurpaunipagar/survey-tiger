@@ -5,9 +5,9 @@ function SingleSelect() {
   return (<div className="question-container">
     <InputGroup className="input-grp">
       <InputGroupAddon addonType="prepend">
-        <InputGroupText>@</InputGroupText>
+        <InputGroupText>?</InputGroupText>
       </InputGroupAddon>
-      <Input placeholder="username" />
+      <Input placeholder="Your Question" />
     </InputGroup>
     <p className="options-text">Options</p>
     <InputGroup className="input-grp">
