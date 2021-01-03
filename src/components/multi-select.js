@@ -9,25 +9,19 @@ import { useState } from 'react';
 import Option from './option';
 
 function MultiSelect() {
-    const [optionCount, setOptionCount] = useState(1);
-    const optArray = [];
+    const [options, setOptions] = useState([""]);
     const addOption = () => {
-        if (optionCount < 4) {
-            setOptionCount(optionCount + 1);
+        if (options.length < 4) {
+            setOptions([...options, ""]);
         }
     }
-    const removeOption=()=>{
-        if(optionCount>1){
-            setOptionCount(optionCount - 1);
+    const removeOption = (optionIdx) => {
+        if (options.length > 1) {
+            options.splice(optionIdx, 1);
+            setOptions([...options]);
         }
     }
-    for (let i = 0; i < optionCount; i++) {
-        optArray.push(<Option
-            placeholder={"Option" + (i + 1)}
-            addOptionFn={addOption} 
-            removeOptionFn={removeOption}
-            optionCount={optionCount}/>);
-    }
+
     return <div className="question-container">
         <InputGroup className="input-grp">
             <InputGroupAddon addonType="prepend">
@@ -36,11 +30,22 @@ function MultiSelect() {
             <Input placeholder="Your Question" />
         </InputGroup>
         <p className="options-text">Options</p>
-        {optArray}
-        <div className="question-buttons">
+        {options.map((option, optionIdx) => {
+            return <>
+                <InputGroup className="input-grp">
+                    <Input placeholder={`Option ${optionIdx + 1}`}
+                        value={option} />
+                    <InputGroupAddon addonType="append">
+                        <Button onClick={addOption} disabled={options.length === 4}>+</Button>
+                        <Button onClick={() => removeOption(optionIdx)} disabled={options.length === 1}>-</Button>
+                    </InputGroupAddon>
+                </InputGroup>
+            </>;
+        })}
+        {options.length === 4 ? (<div className="question-buttons">
             <Button className="main-btn">Add Question</Button>
             <Button className="main-btn">Publish</Button>
-        </div>
+        </div>) : null}
 
     </div>;
 }
