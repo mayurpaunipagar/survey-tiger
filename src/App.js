@@ -12,6 +12,7 @@ import { surveySlice, createSurvey } from './store/surveySlice';
 import { useDispatch } from 'react-redux';
 import { store } from './store/global-store';
 import { unwrapResult } from '@reduxjs/toolkit'
+import {TakeSurvey} from './components/take-survey';
 function App() {
     let history = useHistory();
     const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function App() {
             </header>
             <Switch>
                 <Route path="/create/:surveyId"><CreateSurvey /></Route>
-                <Route path="/take">Take Survey</Route>
+                <Route path="/take"><TakeSurvey/></Route>
                 <Route path="/">
                     <div>
                         <Button className="main-btn" onClick={redirectToNewSurvey}> Create Survey </Button>
