@@ -37,7 +37,9 @@ function App() {
                 <Route path="/">
                     <div>
                         <Button className="main-btn" onClick={redirectToNewSurvey}> Create Survey </Button>
-                        <Link to="/take"><Button className="main-btn" > Take Survey </Button></Link>
+                    </div>
+                    <div>
+                    <Link to="/take"><Button className="main-btn" > Take Survey </Button></Link>
                     </div>
                 </Route>
             </Switch>
