@@ -8,11 +8,11 @@ import {
     useHistory
 } from "react-router-dom";
 import CreateSurvey from './components/create-survey';
-import { surveySlice, createSurvey } from './store/surveySlice';
+import { createSurvey } from './store/surveySlice';
 import { useDispatch } from 'react-redux';
-import { store } from './store/global-store';
 import { unwrapResult } from '@reduxjs/toolkit'
 import {TakeSurvey} from './components/take-survey';
+import ConfirmSurvey from './components/confirm-survey';
 function App() {
     let history = useHistory();
     const dispatch = useDispatch();
@@ -35,9 +35,11 @@ function App() {
             <Switch>
                 <Route path="/create/:surveyId"><CreateSurvey /></Route>
                 <Route path="/take"><TakeSurvey/></Route>
+                <Route path="/confirm/:surveyId"><ConfirmSurvey/></Route>
                 <Route path="/">
                     <div>
-                        <Button className="main-btn" onClick={redirectToNewSurvey}> Create Survey </Button>
+                        <Button className="main-btn" 
+                        onClick={redirectToNewSurvey}> Create Survey </Button>
                     </div>
                     <div>
                     <Link to="/take"><Button className="main-btn" > Take Survey </Button></Link>

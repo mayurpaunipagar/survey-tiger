@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 export const TakeSurvey = () => {
     const surveyIds = useSelector((globalStore) => {
-        return globalStore.surveys.map((survey) => {
+        return globalStore.surveys.filter(s=>s.isPublished).map((survey) => {
             return survey.surveyId;
         })
     });

@@ -6,8 +6,13 @@ import {
     Input
 } from 'reactstrap';
 import { useState } from 'react';
-
+import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {surveySlice} from '../store/surveySlice';
 function MultiSelect() {
+    const {surveyId}=useParams();
+    const history=useHistory();
+    const dispatch=useDispatch();
     const [options, setOptions] = useState([""]);
     const [question, setQuestion] = useState("");
     const addOption = (optionIdx) => {
@@ -30,6 +35,27 @@ function MultiSelect() {
     const isAddQuestionDisabled = () => question.trim() === "" ||
         options.find((opt) => opt.trim() === "") !== undefined;
 
+    const addQuestion = () => {
+        const payload = {
+            type: "multiple",
+            options,
+            question,
+            surveyId
+        }
+        dispatch(surveySlice.actions.addQuestion(payload));
+        history.push("/create/"+surveyId+"?clear=true");
+    }
+    const confirmSurvey=()=>{
+        const payload = {
+          type: "multiple",
+          options,
+          question,
+          surveyId
+        }
+        dispatch(surveySlice.actions.addQuestion(payload));
+        history.push("/confirm/"+surveyId);
+      }
+
     return <div className="question-container">
         <InputGroup className="input-grp">
             <InputGroupAddon addonType="prepend">
@@ -44,7 +70,7 @@ function MultiSelect() {
 
         <p className="options-text">Options</p>
         {options.map((option, optionIdx) => {
-            return <>
+            return <div key={"a"+optionIdx}>
                 <InputGroup className="input-grp">
                     <Input placeholder={`Option ${optionIdx + 1}`}
                         value={option}
@@ -55,16 +81,18 @@ function MultiSelect() {
                         <Button onClick={() => removeOption(optionIdx)} disabled={options.length === 1}>-</Button>
                     </InputGroupAddon>
                 </InputGroup>
-            </>;
+            </div>;
         })}
         {options.length === 4 ? (<div className="question-buttons">
             <Button className="main-btn"
                 disabled={isAddQuestionDisabled()}
+                onClick={addQuestion}
             >
                 Add Question
             </Button>
             <Button className="main-btn"
-                disabled={isAddQuestionDisabled()}>Publish</Button>
+                disabled={isAddQuestionDisabled()}
+                onClick={confirmSurvey}>Publish</Button>
         </div>) : null}
 
     </div>;
