@@ -1,4 +1,5 @@
 ## Node.js v18.12.1 -> not working
+## Node.js v16.16.0 -> works 
 <!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
